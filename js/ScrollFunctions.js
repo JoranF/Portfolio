@@ -35,6 +35,7 @@ $(function() {
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
 
+        // About section animations
         if (scroll >= 150) {
             $('#cSlide').addClass('cardsliding')
         }
@@ -53,7 +54,39 @@ $(function() {
         if (scroll >= 300) {
             $('#icon4').addClass('icons-container')
         }
+        // New skills animations
+        if (scroll >= 350) {
+            $('#icon5').addClass('icons-container')
+        }
+        if (scroll >= 400) {
+            $('#icon6').addClass('icons-container')
+        }
+        if (scroll >= 450) {
+            $('#icon7').addClass('icons-container')
+        }
+        if (scroll >= 500) {
+            $('#icon8').addClass('icons-container')
+        }
 
+        // Project section animations
+        var projectsOffset = $('#gotoProjects').offset().top;
+        if (scroll >= projectsOffset - 600) {
+            setTimeout(function() {
+                $('#project1').addClass('project-sliding');
+            }, 100);
+            setTimeout(function() {
+                $('#project2').addClass('project-sliding');
+            }, 200);
+            setTimeout(function() {
+                $('#project3').addClass('project-sliding');
+            }, 300);
+        }
+
+        // Contact section animations
+        var contactOffset = $('#gotoContact').offset().top;
+        if (scroll >= contactOffset - 600) {
+            $('.contact-card').addClass('contact-sliding');
+        }
     });
 });
 
@@ -63,5 +96,17 @@ $(".nav-link").click(function(e) { // scroll to clicked section
     $('html,body').animate({scrollTop: $(aid).offset().top},'fast');
 });
 
-
-  
+// Add active class to nav links
+$(function() {
+    $(window).scroll(function() {
+        var scrollDistance = $(window).scrollTop();
+        
+        // For each section, check if it's in view
+        $('div[id^="goto"]').each(function(i) {
+            if ($(this).position().top <= scrollDistance + 300) {
+                $('.nav-link.activel').removeClass('activel');
+                $('.nav-link').eq(i).addClass('activel');
+            }
+        });
+    }).scroll();
+});
